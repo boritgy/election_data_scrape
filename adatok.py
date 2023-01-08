@@ -38,6 +38,7 @@ def select_city(city_url, city):
     except Exception as e:
       #print(e)
       print("Rossz város!")  
+      return 0
 
 @st.cache
 def ogy(eredmeny_url, maz, taz):
@@ -712,6 +713,14 @@ except AttributeError:
 
 st.title('Választasi adatok')
 
+st.write("A város nevét úgy írd be, ahogy az a választás.hu-n található. Ez elsősorban Budapesten érdekes, ahol a \"Budapest XIV. kerület\" formátum a jó." )
+
+st.write("Az adatletöltés gyorsasága a település méretétől függ." )
+
+st.write("Készítette, hibabejelentés: Tóth Gy. Bori, +36 30 648 0643, bori.tothgy@gmail.com")
+
+st.write("Tudott hibák: Budapesten önkormányzati, Heves megye megyei listás választás")
+
 city_url = "https://vtr.valasztas.hu/ogy2022/data/04022333/ver/Telepulesek.json"
 
 city = st.text_input('Írd be a várost!')
@@ -720,25 +729,29 @@ if city:
 
     eredmeny_url, maz, taz = select_city(city_url, city)
 
-    data_load_state = st.text('OGY...')
-    data_ogy=ogy(eredmeny_url, maz, taz)
-    
-    data_load_state = st.text('EP...')
-    data_ep=ep(eredmeny_url, maz, taz)
-    
-    data_load_state = st.text('ONK...')
-    polgi_data = onk(eredmeny_url, maz, taz, list(data_ep.keys()))
-    data_polgi = copy.deepcopy(polgi_data)
+    if eredmeny_url == 0:
+        st.write("Rossz város!")
+    else:
+        data_load_state = st.text('OGY...')
+        data_ogy=ogy(eredmeny_url, maz, taz)
 
-    workbook = writeExcel(data_ogy, data_ep, data_polgi)  
-    
-    st.write("Kész!")
-    label = "Letöltés " + city + " adatok"
+        data_load_state = st.text('EP...')
+        data_ep=ep(eredmeny_url, maz, taz)
 
-    st.download_button(
-        label=label,
-        data=workbook,
-        file_name=city+".xlsx",
-        mime="application/vnd.ms-excel"
-    )    
+        data_load_state = st.text('ONK...')
+        polgi_data = onk(eredmeny_url, maz, taz, list(data_ep.keys()))
+        data_polgi = copy.deepcopy(polgi_data)
+
+        workbook = writeExcel(data_ogy, data_ep, data_polgi)  
+
+        st.write("Kész!")
+        label = "Letöltés " + city + " adatok"
+
+        st.download_button(
+            label=label,
+            data=workbook,
+            file_name=city+".xlsx",
+            mime="application/vnd.ms-excel"
+        )    
+       
    
