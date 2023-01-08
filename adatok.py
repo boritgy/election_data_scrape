@@ -33,6 +33,7 @@ def select_city(city_url, city):
       link = "https://vtr.valasztas.hu/ogy2022/data/04161400/szavossz/"+maz+"/SzavkorJkv-"+maz+"-"+taz+".json"
       print(link)
     
+    
       return link, maz, taz
 
     except Exception as e:
