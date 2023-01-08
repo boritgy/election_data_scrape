@@ -712,7 +712,7 @@ except AttributeError:
     # no pyopenssl support used / needed / available
     pass
 
-st.title('Választasi adatok')
+st.title('Választási adatok')
 
 st.write("A város nevét úgy írd be, ahogy az a választás.hu-n található. Ez elsősorban Budapesten érdekes, ahol a \"Budapest XIV. kerület\" formátum a jó." )
 
