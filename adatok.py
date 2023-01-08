@@ -38,7 +38,7 @@ def select_city(city_url, city):
     except Exception as e:
       #print(e)
       print("Rossz város!")  
-      return 0
+      return 0, 0, 0
 
 @st.cache
 def ogy(eredmeny_url, maz, taz):
