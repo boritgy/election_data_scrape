@@ -433,13 +433,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
           k = k + 1       
     
     polgi_list_len = len(columns) + 3
-    
-    kepv_columns = list(data_polgi[2][list(data_polgi[2].keys())[0]].keys())
-    kepv_columns_dict = {}
-    k = polgi_list_len + 1
-    for kepv_column in kepv_columns:
-          kepv_columns_dict[kepv_column] = k
-          k = k + 1
+   
 
     for d in data_polgi[1]:
           worksheet_onk.write(row_no, 0, "Szavazókör", bold)
@@ -470,6 +464,16 @@ def writeExcel(data_ogy, data_ep, data_polgi):
           
           ossz = {}
           for szk in data_polgi[1][d]['szavazokorok']:
+                          
+            kepv_columns = list(data_polgi[2][str(szk)].keys())
+            kepv_columns_dict = {}
+            k = polgi_list_len + 1
+            for kepv_column in kepv_columns:
+              kepv_columns_dict[kepv_column] = k
+              k = k + 1
+            
+            
+            
             col_no = 1
             worksheet_onk.write(row_no, 0, szk)
             if data_polgi[2] != {}:
