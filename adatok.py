@@ -301,7 +301,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
         elif col == "LMP":
             worksheet_ep.write(0, i, col, green_format)
         elif col == "MUNKÁSPÁRT":
-            worksheet_ep.write(0, i, col, darkred_format)
+            worksheet_ep.write(0, i, col, red_format)
         elif col == "MI HAZÁNK":
             worksheet_ep.write(0, i, col, grey_format)
         elif col == "JOBBIK":
@@ -432,7 +432,10 @@ def writeExcel(data_ogy, data_ep, data_polgi):
           col_no = 1
           
           for column in columns:
-            worksheet_onk.write(row_no, col_no, column.strip('-'), bold)
+            if 'FIDESZ' in column.strip('-'):
+                worksheet_onk.write(row_no, col_no, column.strip('-'), orange_format)
+              elif 'DK' in column.strip('-') or 'MOMENTUM' in column.strip('-') or 'LMP' in column.strip('-') or 'JOBBIK' in column.strip('-') or 'MSZP' in column.strip('-') or 'PÁRBESZÉD' in column.strip('-'):
+                worksheet_onk.write(row_no, col_no, column.strip('-'), blue_format)
             col_no  += 1
           
           if data_polgi[2] != {}:
