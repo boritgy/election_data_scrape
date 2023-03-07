@@ -270,7 +270,17 @@ def writeExcel(data_ogy, data_ep, data_polgi):
     worksheet_ep = workbook.add_worksheet('EP') 
     worksheet_onk = workbook.add_worksheet('ONK') 
     worksheet_megyei = workbook.add_worksheet('MEGYEI') 
+    
     bold = workbook.add_format({'bold': 1})
+    orange_format = workbook.add_format({'bold': True, 'bg_color': 'orange'})
+    blue_format = workbook.add_format({'bold': True, 'bg_color': 'blue'})
+    purple_format = workbook.add_format({'bold': True, 'bg_color': 'purple'})
+    red_format = workbook.add_format({'bold': True, 'bg_color': 'red'})
+    green_format = workbook.add_format({'bold': True, 'bg_color': 'green'})
+    grey_format = workbook.add_format({'bold': True, 'bg_color': 'grey'})
+    silver_format = workbook.add_format({'bold': True, 'bg_color': 'silver'})
+    yellow_format = workbook.add_format({'bold': True, 'bg_color': 'yellow'})
+    darkred_format = workbook.add_format({'bold': True, 'bg_color': '#8B0000'})
 
     data_ep = format_data_ep(data_ep, data_polgi[1])
 
@@ -278,7 +288,26 @@ def writeExcel(data_ogy, data_ep, data_polgi):
     i = 1
     for col in data_ep.columns:
       if col != "szk":
-        worksheet_ep.write(0, i, col, bold)
+        if col == "FIDESZ":
+            worksheet_ep.write(0, i, col, orange_format)
+        elif col == "DK":
+            worksheet_ep.write(0, i, col, blue_format)
+        elif col == "MOMENTUM":
+            worksheet_ep.write(0, i, col, purple_format)
+        elif col == "MKKP":
+            worksheet_ep.write(0, i, col, yellow_format)
+        elif col == "MSZP":
+            worksheet_ep.write(0, i, col, red_format)
+        elif col == "LMP":
+            worksheet_ep.write(0, i, col, green_format)
+        elif col == "MUNKÁSPÁRT":
+            worksheet_ep.write(0, i, col, darkred_format)
+        elif col == "MI HAZÁNK":
+            worksheet_ep.write(0, i, col, grey_format)
+        elif col == "JOBBIK":
+            worksheet_ep.write(0, i, col, silver_format)
+        else:
+            worksheet_ep.write(0, i, col, bold)
         i = i + 1
     
     cols = list(data_ep.columns)
