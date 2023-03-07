@@ -1,4 +1,4 @@
-import streamlit as st
+CC3333import streamlit as st
 import pandas as pd
 import numpy as np
 import xlsxwriter
@@ -280,7 +280,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
     grey_format = workbook.add_format({'bold': True, 'bg_color': '#909090'})
     silver_format = workbook.add_format({'bold': True, 'bg_color': 'silver'})
     yellow_format = workbook.add_format({'bold': True, 'bg_color': 'yellow'})
-    darkred_format = workbook.add_format({'bold': True, 'bg_color': '#CC3300 '})
+    darkred_format = workbook.add_format({'bold': True, 'bg_color': '#CC3333'})
 
     data_ep = format_data_ep(data_ep, data_polgi[1])
 
@@ -301,7 +301,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
         elif col == "LMP":
             worksheet_ep.write(0, i, col, green_format)
         elif col == "MUNKÁSPÁRT":
-            worksheet_ep.write(0, i, col, red_format)
+            worksheet_ep.write(0, i, col, darkred_format)
         elif col == "MI HAZÁNK":
             worksheet_ep.write(0, i, col, grey_format)
         elif col == "JOBBIK":
@@ -436,6 +436,8 @@ def writeExcel(data_ogy, data_ep, data_polgi):
                 worksheet_onk.write(row_no, col_no, column.strip('-'), orange_format)
             elif 'DK' in column.strip('-') or 'MOMENTUM' in column.strip('-') or 'LMP' in column.strip('-') or 'JOBBIK' in column.strip('-') or 'MSZP' in column.strip('-') or 'PÁRBESZÉD' in column.strip('-'):
                 worksheet_onk.write(row_no, col_no, column.strip('-'), blue_format)
+            else:
+                worksheet_onk.write(row_no, col_no, column.strip('-'), bold)
             col_no  += 1
           
           if data_polgi[2] != {}:
