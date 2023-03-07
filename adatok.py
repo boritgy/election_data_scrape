@@ -471,7 +471,6 @@ def writeExcel(data_ogy, data_ep, data_polgi):
           for szk in data_polgi[1][d]['szavazokorok']:
                           
             kepv_columns = list(data_polgi[2][str(szk)].keys())
-            kepv_columns_dict = {}
            
             col_no = 1
             worksheet_onk.write(row_no, 0, szk)
