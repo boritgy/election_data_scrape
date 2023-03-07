@@ -434,6 +434,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
     
     polgi_list_len = len(columns) + 3
     
+    kepv_columns = list(data_polgi[2][str(szk)].keys())
     kepv_columns_dict = {}
     k = polgi_list_len + 1
     for kepv_column in kepv_columns:
@@ -482,7 +483,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
               ossz[column + "polgi"] += int(data_polgi[0][str(szk)][column])
               col_no += 1
             if data_polgi[2] != {}:
-              kepv_columns = list(data_polgi[2][str(szk)].keys())
+              
               col_no = polgi_list_len + 1
                           
               
