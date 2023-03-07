@@ -462,7 +462,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
             for column in columns:
               worksheet_onk.write(row_no, col_no, int(data_polgi[0][str(szk)][column]))
               #worksheet_onk.write(row_no, col_no + polgi_list_len, int(data_polgi[2][int(szk)][column]))
-              if column not in ossz:
+              if (column+"polgi") not in ossz:
                 ossz[column + "polgi"] = 0
               ossz[column + "polgi"] += int(data_polgi[0][str(szk)][column])
               col_no += 1
@@ -472,7 +472,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
               for kepv_column in kepv_columns:
                 #worksheet_onk.write(row_no, col_no, int(data_polgi[0][int(szk)][column]))
                 worksheet_onk.write(row_no, col_no, int(data_polgi[2][str(szk)][kepv_column]))
-                if kepv_column not in ossz:
+                if (kepv_column+"kepv") not in ossz:
                   ossz[kepv_column + "kepv"] = 0
                 ossz[kepv_column + "kepv"] += int(data_polgi[2][str(szk)][kepv_column])
                 col_no += 1
