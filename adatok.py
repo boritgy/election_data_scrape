@@ -465,7 +465,6 @@ def writeExcel(data_ogy, data_ep, data_polgi):
                 kepv_columns_dict[kepv_column] = col_no
               col_no  += 1
           row_no += 1
-          st.write(kepv_columns_dict)
           
           ossz = {}
           for szk in data_polgi[1][d]['szavazokorok']:
@@ -495,8 +494,6 @@ def writeExcel(data_ogy, data_ep, data_polgi):
                 if (kepv_column+"kepv") not in ossz:
                   ossz[kepv_column + "kepv"] = 0
                 ossz[kepv_column + "kepv"] += int(data_polgi[2][str(szk)][kepv_column])
-                st.write(kepv_column)
-                st.write(data_polgi[2][str(szk)][kepv_column])
                 col_no += 1
             row_no += 1
             if data_polgi[2] != {}:
