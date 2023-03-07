@@ -425,6 +425,13 @@ def writeExcel(data_ogy, data_ep, data_polgi):
     row_no = 0
     
     columns= list(data_polgi[0][list(data_polgi[0].keys())[0]].keys())
+    
+    polgi_columns_dict = {}
+    k = 1
+    for column in columns:
+          polgi_columns_dict[column] = k
+          k = k + 1
+    
     polgi_list_len = len(columns) + 3
 
     for d in data_polgi[1]:
@@ -462,7 +469,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
               worksheet_onk.write(row_no, polgi_list_len, szk)
             
             for column in columns:
-              worksheet_onk.write(row_no, col_no, int(data_polgi[0][str(szk)][column]))
+              worksheet_onk.write(row_no, polgi_columns_dict[column], int(data_polgi[0][str(szk)][column]))
               #worksheet_onk.write(row_no, col_no + polgi_list_len, int(data_polgi[2][int(szk)][column]))
               if (column+"polgi") not in ossz:
                 ossz[column + "polgi"] = 0
@@ -470,10 +477,16 @@ def writeExcel(data_ogy, data_ep, data_polgi):
               col_no += 1
             if data_polgi[2] != {}:
               kepv_columns = list(data_polgi[2][str(szk)].keys())
+              
+              kepv_columns_dict = {}
+              k = 1
+              for kepv_column in kepv_columns:
+                  kepv_columns_dict[kepv_column] = k
+                  k = k + 1
               col_no = polgi_list_len + 1
               for kepv_column in kepv_columns:
                 #worksheet_onk.write(row_no, col_no, int(data_polgi[0][int(szk)][column]))
-                worksheet_onk.write(row_no, col_no, int(data_polgi[2][str(szk)][kepv_column]))
+                worksheet_onk.write(row_no, kepv_columns_dict[kepv_column], int(data_polgi[2][str(szk)][kepv_column]))
                 if (kepv_column+"kepv") not in ossz:
                   ossz[kepv_column + "kepv"] = 0
                 ossz[kepv_column + "kepv"] += int(data_polgi[2][str(szk)][kepv_column])
