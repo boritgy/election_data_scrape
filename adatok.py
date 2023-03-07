@@ -434,7 +434,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
           for column in columns:
             if 'FIDESZ' in column.strip('-'):
                 worksheet_onk.write(row_no, col_no, column.strip('-'), orange_format)
-              elif 'DK' in column.strip('-') or 'MOMENTUM' in column.strip('-') or 'LMP' in column.strip('-') or 'JOBBIK' in column.strip('-') or 'MSZP' in column.strip('-') or 'PÁRBESZÉD' in column.strip('-'):
+            elif 'DK' in column.strip('-') or 'MOMENTUM' in column.strip('-') or 'LMP' in column.strip('-') or 'JOBBIK' in column.strip('-') or 'MSZP' in column.strip('-') or 'PÁRBESZÉD' in column.strip('-'):
                 worksheet_onk.write(row_no, col_no, column.strip('-'), blue_format)
             col_no  += 1
           
