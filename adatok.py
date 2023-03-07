@@ -427,6 +427,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
     columns= list(data_polgi[0][list(data_polgi[0].keys())[0]].keys())
     
     polgi_columns_dict = {}
+    kepv_columns_dict = {}
     k = 1
     for column in columns:
           polgi_columns_dict[column] = k
@@ -455,10 +456,13 @@ def writeExcel(data_ogy, data_ep, data_polgi):
             for kepv_column in kepv_columns:
               if 'FIDESZ' in kepv_column.strip('-'):
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), orange_format)
+                kepv_columns_dict[kepv_column.strip('-')] = col_no
               elif 'DK' in kepv_column.strip('-') or 'MOMENTUM' in kepv_column.strip('-') or 'LMP' in kepv_column.strip('-') or 'JOBBIK' in kepv_column.strip('-') or 'MSZP' in kepv_column.strip('-') or 'PÁRBESZÉD' in kepv_column.strip('-'):
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), blue_format)
+                kepv_columns_dict[kepv_column.strip('-')] = col_no
               else:
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), bold)
+                kepv_columns_dict[kepv_column.strip('-')] = col_no
               col_no  += 1
           row_no += 1
           
@@ -467,13 +471,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
                           
             kepv_columns = list(data_polgi[2][str(szk)].keys())
             kepv_columns_dict = {}
-            k = polgi_list_len + 1
-            for kepv_column in kepv_columns:
-              kepv_columns_dict[kepv_column] = k
-              k = k + 1
-            
-            
-            
+           
             col_no = 1
             worksheet_onk.write(row_no, 0, szk)
             if data_polgi[2] != {}:
