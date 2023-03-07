@@ -237,10 +237,7 @@ def onk(eredmeny_url, maz, taz, keys):
               nev = arr[0].strip()
               arr = arr[1].split("Jelölő szervezet:")
               part = arr[1].strip().split("   ")[0].strip()
-              if part == 'DK':
-                nev = nev + " - " + "Összefogás"
-              else:
-                nev = nev + " - " + part
+              nev = nev + " - " + part
               szavazatok = arr[0].split(" (")[0].strip()
               kepv_dict[szk][nev] = szavazatok
         if "Megyei" in filter:
@@ -283,7 +280,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
     grey_format = workbook.add_format({'bold': True, 'bg_color': '#909090'})
     silver_format = workbook.add_format({'bold': True, 'bg_color': 'silver'})
     yellow_format = workbook.add_format({'bold': True, 'bg_color': 'yellow'})
-    darkred_format = workbook.add_format({'bold': True, 'bg_color': '#D00000 '})
+    darkred_format = workbook.add_format({'bold': True, 'bg_color': '#CC3300 '})
 
     data_ep = format_data_ep(data_ep, data_polgi[1])
 
@@ -375,24 +372,14 @@ def writeExcel(data_ogy, data_ep, data_polgi):
     i = 1
     for col in data_ogy.columns:
       if col != "Szavazókör":
-        if col == "FIDESZ":
+        if "FIDESZ" in col or "Fidesz" in col:
             worksheet_ogy.write(0, i, col, orange_format)
-        elif col == "DK":
-            worksheet_ogy.write(0, i, col, blue_format)
-        elif col == "MOMENTUM":
-            worksheet_ogy.write(0, i, col, magenta_format)
-        elif col == "MKKP":
-            worksheet_ogy.write(0, i, col, yellow_format)
-        elif col == "MSZP":
-            worksheet_ogy.write(0, i, col, red_format)
-        elif col == "LMP":
-            worksheet_ogy.write(0, i, col, green_format)
-        elif col == "MUNKÁSPÁRT":
-            worksheet_ogy.write(0, i, col, darkred_format)
-        elif col == "MI HAZÁNK":
+        elif "DK" in col or "ellenzék" in col:
+            worksheet_ogy.write(0, i, col, blue_format)        
+        elif "MI HAZÁNK" in col or "Mi Hazánk" in col:
             worksheet_ogy.write(0, i, col, grey_format)
-        elif col == "JOBBIK":
-            worksheet_ogy.write(0, i, col, silver_format)
+        elif "MKKP" in col:
+            worksheet_ogy.write(0, i, col, yellow_format)
         else:
             worksheet_ogy.write(0, i, col, bold)
         i = i + 1
@@ -455,7 +442,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
             for kepv_column in kepv_columns:
               if 'FIDESZ' in kepv_column.strip('-'):
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), orange_format)
-              elif 'Összefogás' in kepv_column.strip('-'):
+              elif 'DK' in kepv_column.strip('-') or 'MOMENTUM' in kepv_column.strip('-') or 'LMP' in kepv_column.strip('-') or 'JOBBIK' in kepv_column.strip('-') or 'MSZP' in kepv_column.strip('-') or 'PÁRBESZÉD' in kepv_column.strip('-'):
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), blue_format)
               else:
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), bold)
