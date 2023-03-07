@@ -456,13 +456,13 @@ def writeExcel(data_ogy, data_ep, data_polgi):
             for kepv_column in kepv_columns:
               if 'FIDESZ' in kepv_column.strip('-'):
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), orange_format)
-                kepv_columns_dict[kepv_column.strip('-')] = col_no
+                kepv_columns_dict[kepv_column] = col_no
               elif 'DK' in kepv_column.strip('-') or 'MOMENTUM' in kepv_column.strip('-') or 'LMP' in kepv_column.strip('-') or 'JOBBIK' in kepv_column.strip('-') or 'MSZP' in kepv_column.strip('-') or 'PÁRBESZÉD' in kepv_column.strip('-'):
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), blue_format)
-                kepv_columns_dict[kepv_column.strip('-')] = col_no
+                kepv_columns_dict[kepv_column] = col_no
               else:
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), bold)
-                kepv_columns_dict[kepv_column.strip('-')] = col_no
+                kepv_columns_dict[kepv_column] = col_no
               col_no  += 1
           row_no += 1
           st.write(kepv_columns_dict)
