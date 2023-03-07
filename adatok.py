@@ -465,6 +465,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
                 kepv_columns_dict[kepv_column.strip('-')] = col_no
               col_no  += 1
           row_no += 1
+          st.write(kepv_columns_dict)
           
           ossz = {}
           for szk in data_polgi[1][d]['szavazokorok']:
