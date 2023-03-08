@@ -500,12 +500,12 @@ def writeExcel(data_ogy, data_ep, data_polgi):
               col_no = polgi_list_len + 1
               worksheet_onk.write(row_no, polgi_list_len, "Összesen")
               for kepv_column in kepv_columns:
-                worksheet_onk.write(row_no, col_no, ossz[kepv_column + "kepv"])
+                worksheet_onk.write(row_no, kepv_columns_dict[kepv_column], ossz[kepv_column + "kepv"])
                 col_no += 1
           col_no = 1         
           worksheet_onk.write(row_no, 0, "Összesen")           
           for column in columns:
-             worksheet_onk.write(row_no, col_no, ossz[column + "polgi"])
+             worksheet_onk.write(row_no, polgi_columns_dict[column], ossz[column + "polgi"])
              col_no += 1
           row_no += 2
 
