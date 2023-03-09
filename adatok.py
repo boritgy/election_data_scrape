@@ -219,7 +219,9 @@ def onk(eredmeny_url, maz, taz, keys):
           arr = div.text.split("Érvényes szavazatok:")
           nev = arr[0].strip()
           arr = arr[1].split("Jelölő szervezet:")
-          part = arr[1].strip()
+          part = arr[1].strip().split("     ")
+          part = [p.split(" - ") for p in p] 
+          print(part)
           nev = nev + " - " + part
           szavazatok = arr[0].split(" (")[0].strip()
           polgi_dict[szk][nev] = szavazatok
