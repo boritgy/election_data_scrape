@@ -224,6 +224,7 @@ def onk(eredmeny_url, maz, taz, keys):
           szavazatok = arr[0].split(" (")[0].strip()
           polgi_dict[szk][nev] = szavazatok
         
+        
         filter = soup.find('div', attrs = {"class" : "nvi-electoral-district-filter"}).text
         if "EVK-választás" in filter:
            new_url = url + "&_onkszavazokorieredmenyek_WAR_nvinvrportlet_tabId2=EVK_KEPVISELO_VALASZTASA"
