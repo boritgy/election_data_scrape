@@ -686,13 +686,10 @@ def format_data_ogy(data, evk_dict):
     
     evk_list = []
     for d in evk_dict:
-      st.write(evk_dict[d]['szavazokorok'])
       for szam in evk_dict[d]['szavazokorok']:
-        st.write(szam)
         if int(szam) in list(df.index):
             evk_list.append(szam)
     evk_list = [int(x) for x in evk_list]
-    st.write(evk_list)
     df= df.loc[evk_list]
     
     columns = df.columns.to_list()
@@ -776,8 +773,9 @@ def custom_row(param, szk, evk_dict, df):
         max = 0
         osszeg = 0
         for sz in evk_dict[str(evk)]['szavazokorok']:
-            max += df.loc[int(sz)]["max_egyeni"]
-            osszeg += df.loc[int(sz)]["összeg_egyeni"]
+            if int(sz) in list(df.index):
+                max += df.loc[int(sz)]["max_egyeni"]
+                osszeg += df.loc[int(sz)]["összeg_egyeni"]
         return ((max / osszeg)*100)
     elif param == "ogy2":
         max = 0
