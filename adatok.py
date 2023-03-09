@@ -468,8 +468,10 @@ def writeExcel(data_ogy, data_ep, data_polgi):
           
           ossz = {}
           for szk in data_polgi[1][d]['szavazokorok']:
-                          
-            kepv_columns = list(data_polgi[2][str(szk)].keys())
+            
+            st.write(data_polgi)             
+            kepv_columns = list(data_polgi[0][str(szk)].keys())
+            
            
             col_no = 1
             worksheet_onk.write(row_no, 0, szk)
