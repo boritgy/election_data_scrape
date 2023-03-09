@@ -688,7 +688,8 @@ def format_data_ogy(data, evk_dict):
     for d in evk_dict:
       st.write(evk_dict[d]['szavazokorok'])
       for szam in evk_dict[d]['szavazokorok']:
-        if szam in list(df.index):
+        st.write(szam)
+        if int(szam) in list(df.index):
             evk_list.append(szam)
     evk_list = [int(x) for x in evk_list]
     st.write(evk_list)
