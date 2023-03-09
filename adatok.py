@@ -220,7 +220,8 @@ def onk(eredmeny_url, maz, taz, keys):
           nev = arr[0].strip()
           arr = arr[1].split("Jelölő szervezet:")
           part = arr[1].strip().split("   ")[0].strip()
-          nev = nev + " - " + part
+          if part == 'DK' or part == 'MOMENTUM' or part == 'LMP' or part == 'JOBBIK'  or part == 'MSZP'  or part == 'PÁRBESZÉD':
+            nev = nev + " - " + "ÖSSZELLENZÉK"
           szavazatok = arr[0].split(" (")[0].strip()
           polgi_dict[szk][nev] = szavazatok
         
@@ -237,7 +238,8 @@ def onk(eredmeny_url, maz, taz, keys):
               nev = arr[0].strip()
               arr = arr[1].split("Jelölő szervezet:")
               part = arr[1].strip().split("   ")[0].strip()
-              nev = nev + " - " + part
+              if part == 'DK' or part == 'MOMENTUM' or part == 'LMP' or part == 'JOBBIK'  or part == 'MSZP'  or part == 'PÁRBESZÉD':
+                    nev = nev + " - " + "ÖSSZELLENZÉK"
               szavazatok = arr[0].split(" (")[0].strip()
               kepv_dict[szk][nev] = szavazatok
         if "Megyei" in filter:
@@ -443,7 +445,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
           for column in columns:
             if 'FIDESZ' in column.strip('-'):
                 worksheet_onk.write(row_no, col_no, column.strip('-'), orange_format)
-            elif 'DK' in column.strip('-') or 'MOMENTUM' in column.strip('-') or 'LMP' in column.strip('-') or 'JOBBIK' in column.strip('-') or 'MSZP' in column.strip('-') or 'PÁRBESZÉD' in column.strip('-'):
+            elif 'ÖSSZELLENZÉK' in column.strip('-'):
                 worksheet_onk.write(row_no, col_no, column.strip('-'), blue_format)
             else:
                 worksheet_onk.write(row_no, col_no, column.strip('-'), bold)
@@ -457,8 +459,8 @@ def writeExcel(data_ogy, data_ep, data_polgi):
               if 'FIDESZ' in kepv_column.strip('-'):
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), orange_format)
                 kepv_columns_dict[kepv_column] = col_no
-              elif 'DK' in kepv_column.strip('-') or 'MOMENTUM' in kepv_column.strip('-') or 'LMP' in kepv_column.strip('-') or 'JOBBIK' in kepv_column.strip('-') or 'MSZP' in kepv_column.strip('-') or 'PÁRBESZÉD' in kepv_column.strip('-'):
-                worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), blue_format)
+              elif 'ÖSSZELLENZÉK' in kepv_column.strip('-'):
+                worksheet_onk.write(row_no, col_no, kepv_column.strip('-')[], blue_format)
                 kepv_columns_dict[kepv_column] = col_no
               else:
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), bold)
