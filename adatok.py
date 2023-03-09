@@ -460,7 +460,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), orange_format)
                 kepv_columns_dict[kepv_column] = col_no
               elif 'ÖSSZELLENZÉK' in kepv_column.strip('-'):
-                worksheet_onk.write(row_no, col_no, kepv_column.strip('-')[], blue_format)
+                worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), blue_format)
                 kepv_columns_dict[kepv_column] = col_no
               else:
                 worksheet_onk.write(row_no, col_no, kepv_column.strip('-'), bold)
