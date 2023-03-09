@@ -222,6 +222,8 @@ def onk(eredmeny_url, maz, taz, keys):
           part = arr[1].strip().split("   ")[0].strip()
           if part == 'DK' or part == 'MOMENTUM' or part == 'LMP' or part == 'JOBBIK'  or part == 'MSZP'  or part == 'PÁRBESZÉD':
             nev = nev + " - " + "ÖSSZELLENZÉK"
+          else:
+            nev = nev + " - " + part
           szavazatok = arr[0].split(" (")[0].strip()
           polgi_dict[szk][nev] = szavazatok
         
@@ -240,6 +242,8 @@ def onk(eredmeny_url, maz, taz, keys):
               part = arr[1].strip().split("   ")[0].strip()
               if part == 'DK' or part == 'MOMENTUM' or part == 'LMP' or part == 'JOBBIK'  or part == 'MSZP'  or part == 'PÁRBESZÉD':
                     nev = nev + " - " + "ÖSSZELLENZÉK"
+              else:
+                    nev = nev + " - " + part
               szavazatok = arr[0].split(" (")[0].strip()
               kepv_dict[szk][nev] = szavazatok
         if "Megyei" in filter:
