@@ -781,14 +781,14 @@ def custom_row(param, szk, evk_dict, df):
         max = 0
         osszeg = 0
         for sz in evk_dict[evk]['szavazokorok']:
-
-            max += df.loc[int(sz)]["max_list"]
-            osszeg += df.loc[int(sz)]["összeg_list"]
+            if int(sz) in list(df.index):
+                max += df.loc[int(sz)]["max_list"]
+                osszeg += df.loc[int(sz)]["összeg_list"]
         return ((max / osszeg)*100)
     elif param == "megyei2":
         ellenzek = 0
         osszeg = 0
-        for sz in evk_dict[evk]['szavazokorok']:
+        for sz in evk_dict[evk]['szavazokorok']:            
             ellenzek += df.loc[str(sz)]["DK"] + df.loc[str(sz)]["MOMENTUM"] + df.loc[str(sz)]["JOBBIK"] + df.loc[str(sz)]["MSZP"]
             osszeg += df.loc[str(sz)]["összeg"]
         return ((ellenzek / osszeg)*100)
