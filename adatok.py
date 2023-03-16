@@ -245,6 +245,7 @@ def onk(eredmeny_url, maz, taz, keys):
               nev = nev + " - " + part
               szavazatok = arr[0].split(" (")[0].strip()
               kepv_dict[szk][nev] = szavazatok
+        print(filter)
         if "Megyei" in filter:
             print('////////////////////////////')
             new_url = url + "&_onkszavazokorieredmenyek_WAR_nvinvrportlet_tabId2=MEGYEI_KOZGYULES_VALASZTASA"
