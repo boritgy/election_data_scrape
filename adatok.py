@@ -245,7 +245,7 @@ def onk(eredmeny_url, maz, taz, keys):
               nev = nev + " - " + part
               szavazatok = arr[0].split(" (")[0].strip()
               kepv_dict[szk][nev] = szavazatok
-        print(filter)
+
         if "Megyei" in filter:
             print('////////////////////////////')
             new_url = url + "&_onkszavazokorieredmenyek_WAR_nvinvrportlet_tabId2=MEGYEI_KOZGYULES_VALASZTASA"
@@ -254,7 +254,6 @@ def onk(eredmeny_url, maz, taz, keys):
             soup = BeautifulSoup(req.content)
             if szk not in megyei_dict:
                 megyei_dict[str(szk)] = {}
-            print(megyei_dict)
             divs = soup.find_all('div', attrs = {"class" : "nvi-search-container-row"})
             print(len(divs))
             for div in divs:
@@ -264,7 +263,7 @@ def onk(eredmeny_url, maz, taz, keys):
               megyei_dict[str(szk)][part] = int(szavazatok)
               megyei_dict[str(szk)]['szk'] = int(szk)
         szk_ind += 1
-
+        print(megyei_dict)
     print(megyei_dict)
     
     return(polgi_dict, evk_dict, kepv_dict, megyei_dict)
