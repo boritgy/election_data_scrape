@@ -264,11 +264,15 @@ def onk(eredmeny_url, maz, taz, keys):
               megyei_dict[str(szk)]['szk'] = int(szk)
         szk_ind += 1
         print(megyei_dict)
+    print("+++++++++")
     print(megyei_dict)
+    print(polgi_dict)
     
     return(polgi_dict, evk_dict, kepv_dict, megyei_dict)
 
 def writeExcel(data_ogy, data_ep, data_polgi):
+    
+    print(data_polgi)
     import xlsxwriter
     import math
 
