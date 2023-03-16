@@ -255,7 +255,7 @@ def onk(eredmeny_url, maz, taz, keys):
                 megyei_dict[str(szk)] = {}
             print(megyei_dict)
             divs = soup.find_all('div', attrs = {"class" : "nvi-search-container-row"})
-            print(len(divs)
+            print(len(divs))
             for div in divs:
               arr = div.text.split("Érvényes szavazatok:")
               part = arr[0].replace("Lista:", "").strip().split(" ")[0].strip()
