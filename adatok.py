@@ -228,7 +228,6 @@ def onk(eredmeny_url, maz, taz, keys):
         
         
         filter = soup.find('div', attrs = {"class" : "nvi-electoral-district-filter"}).text
-        print(filter)
         if "EVK-választás" in filter:
            new_url = url + "&_onkszavazokorieredmenyek_WAR_nvinvrportlet_tabId2=EVK_KEPVISELO_VALASZTASA"
            req = requests.get(new_url)
@@ -251,6 +250,7 @@ def onk(eredmeny_url, maz, taz, keys):
             new_url = url + "&_onkszavazokorieredmenyek_WAR_nvinvrportlet_tabId2=MEGYEI_KOZGYULES_VALASZTASA"
             req = requests.get(new_url)
             soup = BeautifulSoup(req.content)
+            print(soup)
             if szk not in megyei_dict:
                 megyei_dict[str(szk)] = {}
             divs = soup.find_all('div', attrs = {"class" : "nvi-search-container-row"})
