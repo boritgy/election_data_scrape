@@ -520,6 +520,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
 
     if data_polgi[3] != {}:
         data_megyei = format_data_megyei(data_polgi[3], data_polgi[1]) 
+        st.write(data_megyei)
         worksheet_ep.write(0, 0, "Szavazókör", bold)
         i = 1
         for col in data_megyei.columns:
