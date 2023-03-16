@@ -260,7 +260,7 @@ def onk(eredmeny_url, maz, taz, keys):
               megyei_dict[str(szk)]['szk'] = int(szk)
         szk_ind += 1
 
-
+    print(megyei_dict)
     
     return(polgi_dict, evk_dict, kepv_dict, megyei_dict)
 
@@ -406,7 +406,6 @@ def writeExcel(data_ogy, data_ep, data_polgi):
       if length > 1:         
           index= int(data_polgi[1][d]['szavazokorok'][0])
           if index in list(data_ogy.index):
-              print(data_polgi[1][d]['szavazokorok'])
               data_to_write = data_ogy.loc[index]['Nyertes egyéni %']
               worksheet_ogy.merge_range(row_no, col_index, row_no+length-1, col_index, data_to_write, center_format)
               data_to_write = data_ogy.loc[index]['Nyertes lista %']
