@@ -405,6 +405,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
       length = len(data_polgi[1][d]['szavazokorok'])
       if length > 1:         
           index= int(data_polgi[1][d]['szavazokorok'][0])        
+          print(data_polgi[1][d]['szavazokorok'])
           data_to_write = data_ogy.loc[index]['Nyertes egyéni %']
           worksheet_ogy.merge_range(row_no, col_index, row_no+length-1, col_index, data_to_write, center_format)
           data_to_write = data_ogy.loc[index]['Nyertes lista %']
