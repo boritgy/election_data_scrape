@@ -269,8 +269,6 @@ def writeExcel(data_ogy, data_ep, data_polgi):
     import math    
     output = BytesIO()
     
-    st.write(data_polgi[3])
-    
     workbook = xlsxwriter.Workbook(output, {'in_memory': True})
     worksheet_ogy = workbook.add_worksheet('OGY')
     worksheet_ep = workbook.add_worksheet('EP') 
@@ -521,7 +519,7 @@ def writeExcel(data_ogy, data_ep, data_polgi):
     if data_polgi[3] != {}:
         data_megyei = format_data_megyei(data_polgi[3], data_polgi[1]) 
         st.write(data_megyei)
-        worksheet_ep.write(0, 0, "Szavazókör", bold)
+        worksheet_megyei.write(0, 0, "Szavazókör", bold)
         i = 1
         for col in data_megyei.columns:
           if col != "szk":
@@ -553,12 +551,9 @@ def writeExcel(data_ogy, data_ep, data_polgi):
        
         for index, row in data_megyei.iterrows():
             try:
-              worksheet_megyei.write(row_no, 0, row["szk"])
-              worksheet_megyei.write(row_no, 1, row[cols[0]])
-              worksheet_megyei.write(row_no, 2, row[cols[1]])
-              worksheet_megyei.write(row_no, 3, row[cols[2]])
-              worksheet_megyei.write(row_no, 4, row[cols[3]])
-              worksheet_megyei.write(row_no, 5, row[cols[4]])
+             for c in range(len(cols)):
+                worksheet_megyei.write(row_no, 0, row["szk"])
+                worksheet_megyei.write(row_no, i+1, row[cols[i]])
             except:
                 continue
             row_no = row_no + 1  
