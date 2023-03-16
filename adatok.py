@@ -246,16 +246,12 @@ def onk(eredmeny_url, maz, taz, keys):
               szavazatok = arr[0].split(" (")[0].strip()
               kepv_dict[szk][nev] = szavazatok
 
-        if "Megyei" in filter:
-            print('////////////////////////////')
             new_url = url + "&_onkszavazokorieredmenyek_WAR_nvinvrportlet_tabId2=MEGYEI_KOZGYULES_VALASZTASA"
-            print(new_url)
             req = requests.get(new_url)
             soup = BeautifulSoup(req.content)
             if szk not in megyei_dict:
                 megyei_dict[str(szk)] = {}
             divs = soup.find_all('div', attrs = {"class" : "nvi-search-container-row"})
-            print(len(divs))
             for div in divs:
               arr = div.text.split("Érvényes szavazatok:")
               part = arr[0].replace("Lista:", "").strip().split(" ")[0].strip()
@@ -263,19 +259,15 @@ def onk(eredmeny_url, maz, taz, keys):
               megyei_dict[str(szk)][part] = int(szavazatok)
               megyei_dict[str(szk)]['szk'] = int(szk)
         szk_ind += 1
-        print(megyei_dict)
-    print("+++++++++")
-    print(megyei_dict)
-    print(polgi_dict)
     
     return(polgi_dict, evk_dict, kepv_dict, megyei_dict)
 
 def writeExcel(data_ogy, data_ep, data_polgi):
     
-    print(data_polgi)
+    
     import xlsxwriter
     import math
-
+    print(data_polgi)
     output = BytesIO()
     
     workbook = xlsxwriter.Workbook(output, {'in_memory': True})
