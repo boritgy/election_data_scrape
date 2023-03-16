@@ -266,9 +266,11 @@ def writeExcel(data_ogy, data_ep, data_polgi):
     
     
     import xlsxwriter
-    import math
-    print(data_polgi)
+    import math    
     output = BytesIO()
+    
+    print(data_polgi)
+    st.write(data_polgi)
     
     workbook = xlsxwriter.Workbook(output, {'in_memory': True})
     worksheet_ogy = workbook.add_worksheet('OGY')
