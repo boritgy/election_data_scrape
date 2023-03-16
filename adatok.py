@@ -245,7 +245,7 @@ def onk(eredmeny_url, maz, taz, keys):
               nev = nev + " - " + part
               szavazatok = arr[0].split(" (")[0].strip()
               kepv_dict[szk][nev] = szavazatok
-
+        if "Megyei" in filter:
             new_url = url + "&_onkszavazokorieredmenyek_WAR_nvinvrportlet_tabId2=MEGYEI_KOZGYULES_VALASZTASA"
             req = requests.get(new_url)
             soup = BeautifulSoup(req.content)
