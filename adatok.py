@@ -549,11 +549,12 @@ def writeExcel(data_ogy, data_ep, data_polgi):
         cols.remove("szk")
         print(cols)
        
+        st.write(cols)
         for index, row in data_megyei.iterrows():
             try:
-             for c in range(len(cols)):
-                worksheet_megyei.write(row_no, 0, row["szk"])
-                worksheet_megyei.write(row_no, i+1, row[cols[i]])
+             worksheet_megyei.write(row_no, 0, row["szk"])
+             for c in range(len(cols)):                
+                worksheet_megyei.write(row_no, c+1, row[cols[c]])
             except:
                 continue
             row_no = row_no + 1  
