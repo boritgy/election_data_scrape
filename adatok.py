@@ -518,7 +518,6 @@ def writeExcel(data_ogy, data_ep, data_polgi):
 
     if data_polgi[3] != {}:
         data_megyei = format_data_megyei(data_polgi[3], data_polgi[1]) 
-        st.write(data_megyei)
         worksheet_megyei.write(0, 0, "Szavazókör", bold)
         i = 1
         for col in data_megyei.columns:
@@ -549,7 +548,6 @@ def writeExcel(data_ogy, data_ep, data_polgi):
         cols.remove("szk")
         print(cols)
        
-        st.write(cols)
         for index, row in data_megyei.iterrows():
             try:
              worksheet_megyei.write(row_no, 0, row["szk"])
@@ -814,7 +812,7 @@ st.write("Az adatletöltés gyorsasága a település méretétől függ." )
 
 st.write("Készítette, hibabejelentés: Tóth Gy. Bori, +36 30 648 0643, bori.tothgy@gmail.com")
 
-st.write("Tudott hibák: Budapesten önkormányzati, Heves megye megyei listás választás")
+st.write("Tudott hibák: Budapesten önkormányzati")
 
 city_url = "https://vtr.valasztas.hu/ogy2022/data/04022333/ver/Telepulesek.json"
 
