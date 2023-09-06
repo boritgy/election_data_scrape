@@ -5,7 +5,7 @@ import xlsxwriter
 import requests
 import json
 import requests
-import urllib3<2
+import urllib3
 from io import BytesIO
 import copy
 
