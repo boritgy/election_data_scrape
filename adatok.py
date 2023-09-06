@@ -805,7 +805,7 @@ def custom_row(param, szk, evk_dict, df):
 from urllib3.util import create_urllib3_context
 from urllib3 import PoolManager
 from requests.adapters import HTTPAdapter
-from requests import Session()
+from requests import Session
 
 class AddedCipherAdapter(HTTPAdapter):
   def init_poolmanager(self, conntections, maxsize, block=False):
