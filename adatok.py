@@ -160,7 +160,6 @@ def ep(eredmeny_url, maz, taz):
       eu_url = "https://www.valasztas.hu/szavazokorok_ep2019?p_p_id=epszavazokorok_WAR_nvinvrportlet&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&_epszavazokorok_WAR_nvinvrportlet_searchSortColumn=SORSZAM&_epszavazokorok_WAR_nvinvrportlet_megyeKod2="+maz+"&_epszavazokorok_WAR_nvinvrportlet_vlId=291&_epszavazokorok_WAR_nvinvrportlet_searchSortType=asc&_epszavazokorok_WAR_nvinvrportlet_vltId=684&_epszavazokorok_WAR_nvinvrportlet_telepulesKod2="+taz+"&_epszavazokorok_WAR_nvinvrportlet_valasztasTipusKod=E&_epszavazokorok_WAR_nvinvrportlet_delta=20&_epszavazokorok_WAR_nvinvrportlet_resetCur=false&_epszavazokorok_WAR_nvinvrportlet_cur="+str(page)+"#_epszavazokorok_WAR_nvinvrportlet_paginator"
       s = Session()
       st.write(eu_url)
-      req = requests.get(eu_url)
       req = s.mount(eu_url, AddedCipherAdapter())
       req = s.get(eu_url)
       soup = BeautifulSoup(req.content)
