@@ -18,9 +18,10 @@ def select_city(city_url, city):
     #print("Írd be a várost!")
     #city = input().strip()
     code = ""
-    print(city)
+    
     print("Várj....")
-    print(city_url)
+    st.write(city)
+    st.write(city_url)
     
 
     try:
