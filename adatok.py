@@ -20,12 +20,13 @@ def select_city(city_url, city):
     code = ""
     
     print("Várj....")
-    st.write(city)
+    
     st.write(city_url)
     
 
     try:
       req = requests.get(city_url)
+      st.write(city)
       #print(req.text)
       city_dict = json.loads(req.text)["list"]
       df = pd.DataFrame(city_dict, columns=['megnev', 'maz', 'taz'])
