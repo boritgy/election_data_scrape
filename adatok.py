@@ -812,7 +812,7 @@ city_url = "https://vtr.valasztas.hu/ogy2022/data/04022333/ver/Telepulesek.json"
 city = st.text_input('Írd be a várost!')
 
 if city:
-    print(city)
+    st.write(city)
     eredmeny_url, maz, taz = select_city(city_url, city)
 
     if eredmeny_url == 0:
