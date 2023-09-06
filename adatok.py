@@ -799,6 +799,15 @@ def custom_row(param, szk, evk_dict, df):
             osszeg += df.loc[str(sz)]["összeg"]
         return ((ellenzek / osszeg)*100)
 
+requests.packages.urllib3.disable_warnings()
+requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS += ':HIGH:!DH:!aNULL'
+
+try:
+    requests.packages.urllib3.contrib.pyopenssl.util.ssl_.DEFAULT_CIPHERS += ':HIGH:!DH:!aNULL'
+except AttributeError:
+    # no pyopenssl support used / needed / available
+    pass
+
 st.title('Választási adatok')
 
 st.write("A város nevét úgy írd be, ahogy az a választás.hu-n található. Ez elsősorban Budapesten érdekes, ahol a \"Budapest XIV. kerület\" formátum a jó." )
