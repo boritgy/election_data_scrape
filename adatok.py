@@ -11,7 +11,7 @@ import copy
 
 def select_city(city_url, city):
 
-    import requests
+    import 
     import json
     import pandas as pd
 
@@ -151,12 +151,15 @@ def ep(eredmeny_url, maz, taz):
     data = {}
 
     eu_url = "https://www.valasztas.hu/szavazokorok_ep2019?_epszavazokorok_WAR_nvinvrportlet_formDate=32503680000000&p_p_id=epszavazokorok_WAR_nvinvrportlet&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&_epszavazokorok_WAR_nvinvrportlet_vlId=291&_epszavazokorok_WAR_nvinvrportlet_vltId=684&_epszavazokorok_WAR_nvinvrportlet_megyeKod="+maz+"&_epszavazokorok_WAR_nvinvrportlet_telepulesKod="+taz+"&_epszavazokorok_WAR_nvinvrportlet_valasztasTipusKod=E&_epszavazokorok_WAR_nvinvrportlet_searchSortColumn=SORSZAM&_epszavazokorok_WAR_nvinvrportlet_searchSortType=asc&_epszavazokorok_WAR_nvinvrportlet_megyeKod2="+maz+"&_epszavazokorok_WAR_nvinvrportlet_telepulesKod2="+taz+"&_epszavazokorok_WAR_nvinvrportlet_szavkorTypes=&_epszavazokorok_WAR_nvinvrportlet_settlement=Sz%C3%A1zhalombatta&_epszavazokorok_WAR_nvinvrportlet_searchWard=&p_auth=&p_auth=#_epszavazokorok_WAR_nvinvrportlet_paginator"
-    req = requests.get(eu_url + '1')
+    req = s.mount(eu_url + '1', AddedCipherAdapter())
+    req = s.get(eu_url + '1')
     soup = BeautifulSoup(req.content)
     pages = int(soup.find('small', attrs = {'class':'search-results'}).text.split(' / ')[1]) // 20 + 1
     for page in range(1, pages+1):
       eu_url = "https://www.valasztas.hu/szavazokorok_ep2019?p_p_id=epszavazokorok_WAR_nvinvrportlet&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&_epszavazokorok_WAR_nvinvrportlet_searchSortColumn=SORSZAM&_epszavazokorok_WAR_nvinvrportlet_megyeKod2="+maz+"&_epszavazokorok_WAR_nvinvrportlet_vlId=291&_epszavazokorok_WAR_nvinvrportlet_searchSortType=asc&_epszavazokorok_WAR_nvinvrportlet_vltId=684&_epszavazokorok_WAR_nvinvrportlet_telepulesKod2="+taz+"&_epszavazokorok_WAR_nvinvrportlet_valasztasTipusKod=E&_epszavazokorok_WAR_nvinvrportlet_delta=20&_epszavazokorok_WAR_nvinvrportlet_resetCur=false&_epszavazokorok_WAR_nvinvrportlet_cur=%s#_epszavazokorok_WAR_nvinvrportlet_paginator"
       req = requests.get(eu_url %str(page))
+      req = s.mount(eu_url %str(page), AddedCipherAdapter())
+      req = s.get(eu_url %str(page))
       soup = BeautifulSoup(req.content)
       link_divs = soup.find_all('div', attrs = {"class" : "nvi-search-container-row"})
       links = []
@@ -166,7 +169,8 @@ def ep(eredmeny_url, maz, taz):
          szk_no = ""
          while szk_no == "":
           try:
-            req = requests.get(link)
+            req = s.mount(link, AddedCipherAdapter())
+            req = s.get(link)
             time.sleep(0.5)
             soup = BeautifulSoup(req.content)
             szk_no = soup.find('h1', attrs = {"class": "pb-1"}).text
@@ -204,7 +208,8 @@ def onk(eredmeny_url, maz, taz, keys):
 
     for szk in keys:
       url = "https://www.valasztas.hu/telepules-adatlap_onk2019?p_p_id=onkszavazokorieredmenyek_WAR_nvinvrportlet&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&_onkszavazokorieredmenyek_WAR_nvinvrportlet_telepulesKod="+taz+"&_onkszavazokorieredmenyek_WAR_nvinvrportlet_megyeKod2="+maz+"&_onkszavazokorieredmenyek_WAR_nvinvrportlet_megyeKod="+maz+"&_onkszavazokorieredmenyek_WAR_nvinvrportlet_vlId=294&_onkszavazokorieredmenyek_WAR_nvinvrportlet_vltId=687&_onkszavazokorieredmenyek_WAR_nvinvrportlet_telepulesKod2="+taz+"&_onkszavazokorieredmenyek_WAR_nvinvrportlet_szavkorSorszam="+str(szk)+"&_onkszavazokorieredmenyek_WAR_nvinvrportlet_valaltipKod=H"
-      req = requests.get(url)
+      req = s.mount(url, AddedCipherAdapter())
+      req = s.get(url)
       soup = BeautifulSoup(req.content)
       divs = soup.find_all('div', attrs = {"class" : "nvi-search-container-row"})
       if divs == []:
@@ -237,7 +242,8 @@ def onk(eredmeny_url, maz, taz, keys):
         filter = soup.find('div', attrs = {"class" : "nvi-electoral-district-filter"}).text
         if "EVK-választás" in filter:
            new_url = url + "&_onkszavazokorieredmenyek_WAR_nvinvrportlet_tabId2=EVK_KEPVISELO_VALASZTASA"
-           req = requests.get(new_url)
+           req = s.mount(new_url, AddedCipherAdapter())
+           req = s.get(new_url)
            soup = BeautifulSoup(req.content)
            if szk not in kepv_dict:
               kepv_dict[szk] = {}
@@ -254,7 +260,8 @@ def onk(eredmeny_url, maz, taz, keys):
               kepv_dict[szk][nev] = szavazatok
         if "Megyei" in filter:
             new_url = url + "&_onkszavazokorieredmenyek_WAR_nvinvrportlet_tabId2=MEGYEI_KOZGYULES_VALASZTASA"
-            req = requests.get(new_url)
+            req = s.mount(new_url, AddedCipherAdapter())
+            req = s.get(new_url)
             soup = BeautifulSoup(req.content)
             if szk not in megyei_dict:
                 megyei_dict[str(szk)] = {}
