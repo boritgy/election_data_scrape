@@ -799,6 +799,12 @@ def custom_row(param, szk, evk_dict, df):
             osszeg += df.loc[str(sz)]["összeg"]
         return ((ellenzek / osszeg)*100)
 
+from urllib3.util import create_urllib3_context
+from urllib3 import PoolManager
+
+ctx = create_urllib3_context(ciphers=":HIGH:!DH:!aNULL")
+http = PoolManager(ssl_context=ctx)
+http.request("GET", ...)
 
 st.title('Választási adatok')
 
