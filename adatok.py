@@ -151,10 +151,9 @@ def ep(eredmeny_url, maz, taz):
     data = {}
 
     eu_url = "https://www.valasztas.hu/szavazokorok_ep2019?_epszavazokorok_WAR_nvinvrportlet_formDate=32503680000000&p_p_id=epszavazokorok_WAR_nvinvrportlet&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&_epszavazokorok_WAR_nvinvrportlet_vlId=291&_epszavazokorok_WAR_nvinvrportlet_vltId=684&_epszavazokorok_WAR_nvinvrportlet_megyeKod="+maz+"&_epszavazokorok_WAR_nvinvrportlet_telepulesKod="+taz+"&_epszavazokorok_WAR_nvinvrportlet_valasztasTipusKod=E&_epszavazokorok_WAR_nvinvrportlet_searchSortColumn=SORSZAM&_epszavazokorok_WAR_nvinvrportlet_searchSortType=asc&_epszavazokorok_WAR_nvinvrportlet_megyeKod2="+maz+"&_epszavazokorok_WAR_nvinvrportlet_telepulesKod2="+taz+"&_epszavazokorok_WAR_nvinvrportlet_szavkorTypes=&_epszavazokorok_WAR_nvinvrportlet_settlement=Sz%C3%A1zhalombatta&_epszavazokorok_WAR_nvinvrportlet_searchWard=&p_auth=&p_auth=#_epszavazokorok_WAR_nvinvrportlet_paginator"
-    st.write(eu_url)
-    st.write(eu_url + 1)
-    req = s.mount(eu_url + '1', AddedCipherAdapter())
-    req = s.get(eu_url + '1')
+    s = Session()
+    req = s.mount(eu_url, AddedCipherAdapter())
+    req = s.get(eu_url)
     soup = BeautifulSoup(req.content)
     pages = int(soup.find('small', attrs = {'class':'search-results'}).text.split(' / ')[1]) // 20 + 1
     for page in range(1, pages+1):
