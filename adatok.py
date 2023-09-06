@@ -11,7 +11,7 @@ import copy
 
 def select_city(city_url, city):
 
-    import 
+    import requests
     import json
     import pandas as pd
 
