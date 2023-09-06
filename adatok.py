@@ -25,7 +25,8 @@ def select_city(city_url, city):
     
 
     try:
-      req = requests.get(city_url)
+      req = s.mount(city_url, AddedCipherAdapter())
+      req = s.get(city_url)
       st.write(city)
       #print(req.text)
       city_dict = json.loads(req.text)["list"]
@@ -67,10 +68,12 @@ def ogy(eredmeny_url, maz, taz):
         2: 'Normális Párt'
     }
 
-    req = requests.get(eredmeny_url)
+    req = s.mount(eredmeny_url, AddedCipherAdapter())
+    req = s.get(eredmeny_url)
     eredmeny_dict = json.loads(req.text)
 
-    req = requests.get(jeloltek_url)
+    req = s.mount(jeloltek_url, AddedCipherAdapter())
+    req = s.get(jeloltek_url)
     jeloltek_dict = json.loads(req.text)["list"]
 
     df = pd.DataFrame(jeloltek_dict, columns=['neve', 'jlcs_nev', 'ej_id'])
@@ -801,10 +804,20 @@ def custom_row(param, szk, evk_dict, df):
 
 from urllib3.util import create_urllib3_context
 from urllib3 import PoolManager
+from requests.adapters import HTTPAdapter
+from requests import Session()
 
-ctx = create_urllib3_context(ciphers=":HIGH:!DH:!aNULL")
-http = PoolManager(ssl_context=ctx)
-http.request("GET", ...)
+class AddedCipherAdapter(HTTPAdapter):
+  def init_poolmanager(self, conntections, maxsize, block=False):
+    ctx = create_urllib3_context(ciphers=":HIGH:!DH:!aNULL")
+    self.poolmanager = PoolManager(
+      num_pools=connections,
+      maxsize=maxsize,
+      block=block,
+      ssl_context=ctx
+    )
+
+s = Session()
 
 st.title('Választási adatok')
 
