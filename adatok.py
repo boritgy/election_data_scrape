@@ -808,7 +808,7 @@ from requests.adapters import HTTPAdapter
 from requests import Session
 
 class AddedCipherAdapter(HTTPAdapter):
-  def init_poolmanager(self, conntections, maxsize, block=False):
+  def init_poolmanager(self, connections, maxsize, block=False):
     ctx = create_urllib3_context(ciphers=":HIGH:!DH:!aNULL")
     self.poolmanager = PoolManager(
       num_pools=connections,
