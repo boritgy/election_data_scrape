@@ -18,8 +18,10 @@ def select_city(city_url, city):
     #print("Írd be a várost!")
     #city = input().strip()
     code = ""
-
+    print(city)
     print("Várj....")
+    print(city_url)
+    
 
     try:
       req = requests.get(city_url)
