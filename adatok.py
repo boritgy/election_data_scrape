@@ -41,7 +41,7 @@ def select_city(city_url, city):
       return link, maz, taz
 
     except Exception as e:
-      #print(e)
+      st.write(e)
       print("Rossz város!")  
       return 0, 0, 0
 
